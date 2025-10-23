@@ -188,7 +188,7 @@
     </div>
   </section>
 
-  <!-- CHI SIAMO -->
+  <!-- CHI SIAMO (dettagliata) -->
   <section id="chi-siamo" class="section">
     <div class="container">
       <h2 class="section__title">Chi <span class="accent">siamo</span></h2>
@@ -211,55 +211,80 @@
       </div>
     </div>
   </section>
+<!-- RECENSIONI / FEEDBACK CLIENTI -->
+<section id="recensioni" class="section">
+  <div class="container" itemscope itemtype="https://schema.org/Product">
+    <h2 class="section__title">
+      Cosa dicono i <span class="accent">clienti</span>
+    </h2>
 
-  <!-- RECENSIONI -->
-  <section id="recensioni" class="section">
-    <div class="container" itemscope itemtype="https://schema.org/Product">
-      <h2 class="section__title">Cosa dicono i <span class="accent">clienti</span></h2>
-      <div class="rating-aggregate" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
-        <div class="rating-aggregate__stars" aria-label="Valutazione media"><span id="avg-stars" class="stars" aria-hidden="true">★★★★★</span></div>
-        <div class="rating-aggregate__meta"><strong id="avg-score" itemprop="ratingValue">5.0</strong> / 5 <span class="muted">·</span> <span><span id="rating-count" itemprop="ratingCount">0</span> recensioni</span></div>
+    <!-- Rating aggregato (schema.org) -->
+    <div class="rating-aggregate" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+      <div class="rating-aggregate__stars" aria-label="Valutazione media">
+        <span id="avg-stars" class="stars" aria-hidden="true">★★★★★</span>
       </div>
-      <div id="reviews-list" class="reviews"></div>
-
-      <form id="review-form" class="form card" novalidate>
-        <h3>Lascia un feedback</h3>
-        <div class="form__row">
-          <label>Nome e Cognome<input type="text" name="nome" required placeholder="Mario Rossi"></label>
-          <label>Città (facoltativo)<input type="text" name="citta" placeholder="Genova"></label>
-          <label>Servizio
-            <select name="servizio" required>
-              <option value="">Seleziona…</option>
-              <option>Fotovoltaico</option>
-              <option>Riscaldamento a pavimento</option>
-              <option>Climatizzazione</option>
-              <option>Altro</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="rating-field">
-          <span>Valutazione:</span>
-          <div class="stars-input" role="radiogroup" aria-label="Valutazione in stelle">
-            <input type="radio" id="r5" name="rating" value="5" required><label for="r5" aria-label="5 stelle">★</label>
-            <input type="radio" id="r4" name="rating" value="4"><label for="r4" aria-label="4 stelle">★</label>
-            <input type="radio" id="r3" name="rating" value="3"><label for="r3" aria-label="3 stelle">★</label>
-            <input type="radio" id="r2" name="rating" value="2"><label for="r2" aria-label="2 stelle">★</label>
-            <input type="radio" id="r1" name="rating" value="1"><label for="r1" aria-label="1 stella">★</label>
-          </div>
-        </div>
-
-        <label>Commento<textarea name="commento" rows="4" required placeholder="Racconta la tua esperienza..."></textarea></label>
-
-        <div class="form__actions">
-          <button type="submit" class="btn">Invia recensione</button>
-          <button type="button" id="btn-dummy-reviews" class="btn btn--ghost">Carica esempi</button>
-        </div>
-        <p class="form__msg" aria-live="polite"></p>
-        <small class="muted">*L’invio della recensione implica il consenso alla pubblicazione. Le recensioni sono moderate.</small>
-      </form>
+      <div class="rating-aggregate__meta">
+        <strong id="avg-score" itemprop="ratingValue">5.0</strong> / 5
+        <span class="muted">·</span>
+        <span><span id="rating-count" itemprop="ratingCount">0</span> recensioni</span>
+      </div>
     </div>
-  </section>
+
+    <!-- Lista recensioni renderizzata via JS -->
+    <div id="reviews-list" class="reviews"></div>
+
+    <!-- Form invio recensione -->
+    <form id="review-form" class="form card" novalidate>
+      <h3>Lascia un feedback</h3>
+      <div class="form__row">
+        <label>Nome e Cognome
+          <input type="text" name="nome" required placeholder="Mario Rossi">
+        </label>
+        <label>Città (facoltativo)
+          <input type="text" name="citta" placeholder="Genova">
+        </label>
+        <label>Servizio
+          <select name="servizio" required>
+            <option value="">Seleziona…</option>
+            <option>Fotovoltaico</option>
+            <option>Riscaldamento a pavimento</option>
+            <option>Climatizzazione</option>
+            <option>Altro</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="rating-field">
+        <span>Valutazione:</span>
+        <div class="stars-input" role="radiogroup" aria-label="Valutazione in stelle">
+          <!-- 5→1 per avere hover progressivo -->
+          <input type="radio" id="r5" name="rating" value="5" required>
+          <label for="r5" aria-label="5 stelle">★</label>
+          <input type="radio" id="r4" name="rating" value="4">
+          <label for="r4" aria-label="4 stelle">★</label>
+          <input type="radio" id="r3" name="rating" value="3">
+          <label for="r3" aria-label="3 stelle">★</label>
+          <input type="radio" id="r2" name="rating" value="2">
+          <label for="r2" aria-label="2 stelle">★</label>
+          <input type="radio" id="r1" name="rating" value="1">
+          <label for="r1" aria-label="1 stella">★</label>
+        </div>
+      </div>
+
+      <label>Commento
+        <textarea name="commento" rows="4" required placeholder="Racconta la tua esperienza..."></textarea>
+      </label>
+
+      <div class="form__actions">
+        <button type="submit" class="btn">Invia recensione</button>
+        <button type="button" id="btn-dummy-reviews" class="btn btn--ghost">Carica esempi</button>
+      </div>
+      <p class="form__msg" aria-live="polite"></p>
+      <small class="muted">*L’invio della recensione implica il consenso alla pubblicazione. Le recensioni sono moderate.</small>
+    </form>
+  </div>
+</section>
+
 
   <!-- FAQ -->
   <section id="faq" class="section section--alt">
@@ -296,12 +321,20 @@
               <option value="clima">Climatizzazione</option>
             </select>
           </label>
-          <label>Provincia<input type="text" name="provincia" required placeholder="GE, MI, TO…"></label>
-          <label>Budget (€)<input type="number" name="budget" required placeholder="Es. 6000" min="0" step="100"></label>
+          <label>Provincia
+            <input type="text" name="provincia" required placeholder="GE, MI, TO…">
+          </label>
+          <label>Budget (€)
+            <input type="number" name="budget" required placeholder="Es. 6000" min="0" step="100">
+          </label>
         </div>
         <div class="form__row">
-          <label>Email<input type="email" name="email" required placeholder="nome@email.it"></label>
-          <label>Telefono<input type="tel" name="telefono" required placeholder="+39 …" inputmode="tel"></label>
+          <label>Email
+            <input type="email" name="email" required placeholder="nome@email.it">
+          </label>
+          <label>Telefono
+            <input type="tel" name="telefono" required placeholder="+39 …" inputmode="tel">
+          </label>
           <label>Urgenza
             <select name="urgenza" required>
               <option value="">Seleziona…</option>
@@ -311,7 +344,10 @@
             </select>
           </label>
         </div>
-        <label class="checkbox"><input type="checkbox" name="privacy" required><span>Acconsento al trattamento dei dati secondo l’informativa privacy.</span></label>
+        <label class="checkbox">
+          <input type="checkbox" name="privacy" required>
+          <span>Acconsento al trattamento dei dati secondo l’informativa privacy.</span>
+        </label>
         <div class="form__actions">
           <button type="submit" class="btn">Invia richiesta</button>
           <button type="button" class="btn btn--ghost" id="btn-salva-bozza">Salva bozza</button>
@@ -333,7 +369,7 @@
         <a href="#prodotti">Prodotti</a>
         <a href="#preventivo">Preventivo</a>
       </div>
-      <div class="footer__credits">Sito realizzato da <strong>MultiserviceFajardo</strong></div>
+      <div class="footer__credits">Sito Power BY <strong>MultiserviceFajardo</strong></div>
     </div>
   </footer>
 
@@ -342,7 +378,9 @@
     <div class="lightbox__inner">
       <button class="lightbox__close" aria-label="Chiudi">×</button>
       <h3 class="lightbox__title">Galleria</h3>
-      <div class="lightbox__viewport"><img id="lb-image" alt="" /></div>
+      <div class="lightbox__viewport">
+        <img id="lb-image" alt="" />
+      </div>
       <div class="lightbox__thumbs" id="lb-thumbs" role="list"></div>
       <div class="lightbox__controls">
         <button class="btn btn--ghost" id="lb-prev" aria-label="Immagine precedente">◀</button>
